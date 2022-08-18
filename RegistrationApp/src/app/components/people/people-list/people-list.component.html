@@ -1,0 +1,59 @@
+<h3 class="text-center">Pessoas</h3>
+
+<div class="d-flex">
+  <div class="flex-fill">
+    <div class="form-group mb-2">
+      <div class="input-group">
+        <div class="input-group-text">Filtro:</div>
+        <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="filterList">
+      </div>
+    </div>
+  </div>
+  <div class="ms-3">
+    <a class="d-flex btn btn-primary" routerLink="/pessoas/criar">
+      <i class="fa fa-plus-circle my-1"></i>
+      <b class="ml-1 d-none d-sm-block ms-1" style="font-size: 0.9rem;">Novo</b>
+    </a>
+  </div>
+</div>
+
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>Nome</th>
+      <th class="d-none d-md-table-cell">CPF</th>
+      <th class="d-none d-md-table-cell">Email</th>
+      <th class="d-none d-md-table-cell">Endereço</th>
+      <th>Empresa</th>
+      <th>Opções</th>
+    </tr>
+  </thead>
+  <tbody class="thead-dark" *ngIf="people">
+    <tr *ngFor="let person of filteredPeople">
+      <th>{{person.fullName}}</th>
+      <th class="d-none d-md-table-cell">{{person.cpf}}</th>
+      <th class="d-none d-md-table-cell">{{person.email}}</th>
+      <th class="d-none d-md-table-cell">{{person.address.streetName}}, {{person.address.number}} - {{person.address.zipCode}}</th>
+      <th>{{person.company.companyName}}</th>
+      <th>
+        <button type="button" class="btn btn-primary btn-sm me-1 d-none d-md-table-cell" mat-raised-button matTooltip="Editar" (click)="personEdit(person.id)"><i class="fa fa-edit"></i></button>
+        <button type="button" class="btn btn-danger btn-sm" mat-raised-button matTooltip="Excluir" (click)="openModal(template, person.id)"><i class="fa fa-trash"></i></button>
+      </th>
+    </tr>
+  </tbody>
+  <tfoot *ngIf="!filteredPeople.length">
+    <tr>
+      <td colspan="6" class="text-center">
+        <h5>Nenhuma Pessoa foi encontrada!</h5>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Tem certeza que deseja deletar este cadastro?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
+  </div>
+</ng-template>

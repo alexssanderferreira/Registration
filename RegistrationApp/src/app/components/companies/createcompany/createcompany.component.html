@@ -1,0 +1,81 @@
+<h3 class="text-center">Empresa</h3>
+<form class="row g-2" [formGroup]="form" (submit)="submitForm()">
+  <div class="col-md-8">
+    <label class="form-label">Nome</label>
+    <input type="text" class="form-control" formControlName="companyName">
+    <app-message *ngIf="
+      form.get('companyName')?.errors?.['required'] &&
+      form.get('companyName')?.touched
+    " mensagem="Nome obrigatório">
+    </app-message>
+    <app-message *ngIf="
+      form.get('companyName')?.errors?.['minlength'] &&
+      form.get('companyName')?.touched
+    " mensagem="Nome incorreto">
+    </app-message>
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label">CNPJ</label>
+    <input type="text" class="form-control" formControlName="cnpj" placeholder="">
+    <app-message *ngIf="
+      form.get('cnpj')?.errors?.['required'] &&
+      form.get('cnpj')?.touched
+    " mensagem="CNPJ obrigatório">
+    </app-message>
+    <app-message *ngIf="
+      form.get('cnpj')?.errors?.['minlength'] &&
+      form.get('cnpj')?.touched
+    " mensagem="CNPJ incorreto">
+    </app-message>
+  </div>
+
+  <form class="row g-2 mt-4" formGroupName="address">
+    <h5>Endereço</h5>
+    <div class="col-md-9">
+      <label class="form-label">Logradouro</label>
+      <input type="text" class="form-control" formControlName="streetName">
+      <app-message *ngIf="
+        form.get('address.streetName')?.errors?.['required'] &&
+        form.get('address.streetName')?.touched
+      " mensagem="Logradouro obrigatório">
+      </app-message>
+      <app-message *ngIf="
+        form.get('address.streetName')?.errors?.['minlength'] &&
+        form.get('address.streetName')?.touched
+      " mensagem="Logradouro incorreto">
+      </app-message>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">Número</label>
+      <input type="text" class="form-control" formControlName="number" placeholder="">
+      <app-message *ngIf="
+        form.get('address.number')?.errors?.['required'] &&
+        form.get('address.number')?.touched
+      " mensagem="Número obrigatório">
+      </app-message>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Bairro</label>
+      <input type="text" class="form-control" formControlName="district" placeholder="">
+      <app-message *ngIf="
+      form.get('address.district')?.errors?.['required'] &&
+      form.get('address.district')?.touched
+      " mensagem="Bairro obrigatório">
+      </app-message>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">CEP</label>
+      <input type="text" class="form-control" formControlName="zipCode" placeholder="00000-000">
+      <app-message *ngIf="
+        form.get('address.zipCode')?.errors?.['required'] &&
+        form.get('address.zipCode')?.touched
+      " mensagem="CEP obrigatório">
+      </app-message>
+    </div>
+  </form>
+  <button class="btn btn-primary btn-block mt-4">Salvar</button>
+</form>

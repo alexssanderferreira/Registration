@@ -1,0 +1,34 @@
+<h3 class="text-center">Endereços</h3>
+
+<div class="d-flex">
+  <div class="input-group">
+    <div class="input-group-text">Filtro:</div>
+    <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="filterList">
+  </div>
+</div>
+
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>Logradouro</th>
+      <th>Número</th>
+      <th>Bairro</th>
+      <th class="d-none d-sm-table-cell">CEP</th>
+    </tr>
+  </thead>
+  <tbody class="thead-dark" *ngIf="adresses">
+    <tr *ngFor="let address of filteredAdresses">
+      <th>{{address.streetName}}</th>
+      <th>{{address.number}}</th>
+      <th>{{address.district}}</th>
+      <th class="d-none d-sm-table-cell">{{address.zipCode}}</th>
+    </tr>
+  </tbody>
+  <tfoot *ngIf="!filteredAdresses.length">
+    <tr>
+      <td colspan="6" class="text-center">
+        <h5>Nenhum Endereço foi encontrado!</h5>
+      </td>
+    </tr>
+  </tfoot>
+</table>

@@ -1,0 +1,119 @@
+<h3 class="text-center">Pessoa</h3>
+<form class="row g-2" [formGroup]="form" (submit)="submitForm()">
+  <div class="col-md-12">
+    <label class="form-label">Nome Completo</label>
+    <input type="text" class="form-control" formControlName="fullName">
+    <app-message *ngIf="
+      form.get('fullName')?.errors?.['required'] &&
+      form.get('fullName')?.touched
+    " mensagem="Nome obrigatório">
+    </app-message>
+    <app-message *ngIf="
+      form.get('fullName')?.errors?.['minlength'] &&
+      form.get('fullName')?.touched
+    " mensagem="Nome incorreto">
+    </app-message>
+  </div>
+
+  <div class="col-md-8">
+    <label class="form-label">E-mail</label>
+    <input type="text" class="form-control" formControlName="email">
+    <app-message *ngIf="
+      form.get('email')?.errors?.['required'] &&
+      form.get('email')?.touched
+    " mensagem="E-mail obrigatório">
+    </app-message>
+    <app-message *ngIf="
+      form.get('email')?.errors?.['email'] &&
+      form.get('email')?.touched
+    " mensagem="E-mail incorreto">
+    </app-message>
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label">CPF</label>
+    <input type="text" class="form-control" formControlName="cpf" placeholder="000.000.000-00">
+    <app-message *ngIf="
+      form.get('cpf')?.errors?.['required'] &&
+      form.get('cpf')?.touched
+    " mensagem="CPF obrigatório">
+    </app-message>
+    <app-message *ngIf="
+      form.get('cpf')?.errors?.['maxlength'] &&
+      form.get('cpf')?.touched
+    " mensagem="CPF incorreto">
+    </app-message>
+    <app-message *ngIf="
+      form.get('cpf')?.errors?.['minlength'] &&
+      form.get('cpf')?.touched
+    " mensagem="CPF incorreto">
+    </app-message>
+  </div>
+  <form class="row g-2 mt-4" formGroupName="address">
+    <h5>Endereço</h5>
+    <div class="col-md-9">
+      <label class="form-label">Logradouro</label>
+      <input type="text" class="form-control" formControlName="streetName">
+      <app-message *ngIf="
+      form.get('address.streetName')?.errors?.['required'] &&
+        form.get('address.streetName')?.touched
+        " mensagem="Logradouro obrigatório">
+      </app-message>
+      <app-message *ngIf="
+        form.get('address.streetName')?.errors?.['minlength'] &&
+        form.get('address.streetName')?.touched
+      " mensagem="Logradouro incorreto">
+      </app-message>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">Número</label>
+      <input type="text" class="form-control" formControlName="number" placeholder="">
+      <app-message *ngIf="
+        form.get('address.number')?.errors?.['required'] &&
+        form.get('address.number')?.touched
+      " mensagem="Número obrigatório">
+      </app-message>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Bairro</label>
+      <input type="text" class="form-control" formControlName="district" placeholder="">
+      <app-message *ngIf="
+      form.get('address.district')?.errors?.['required'] &&
+      form.get('address.district')?.touched
+      " mensagem="Bairro obrigatório">
+      </app-message>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">CEP</label>
+      <input type="text" class="form-control" formControlName="zipCode" placeholder="00000-000">
+      <app-message *ngIf="
+      form.get('address.zipCode')?.errors?.['required'] &&
+      form.get('address.zipCode')?.touched
+      " mensagem="CEP obrigatório">
+      </app-message>
+    </div>
+  </form>
+  <div class="row g-2 mt-4" >
+    <h5>Empresa</h5>
+    <div class="col-md-6">
+      <label class="form-label">IdEmpresa</label>
+      <input type="text" class="form-control" formControlName="companyId" placeholder="">
+      <app-message *ngIf="
+        form.get('companyId')?.errors?.['required'] &&
+        form.get('companyId')?.touched
+      " mensagem="IdEmpresa obrigatório">
+      </app-message>
+      <app-message *ngIf="
+        form.get('companyId')?.errors?.['companyExist'] &&
+        form.get('companyId')?.touched
+      " mensagem="IdEmpresa não encontrada!">
+      </app-message>
+    </div>
+  </div>
+
+  <button class=" btn btn-primary btn-block mt-4">Salvar</button>
+</form>
+
