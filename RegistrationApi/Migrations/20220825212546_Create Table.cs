@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RegistrationApi.Migrations
 {
-    public partial class CreateTables : Migration
+    public partial class CreateTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,10 +14,10 @@ namespace RegistrationApi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    StreetName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StreetName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
                     Number = table.Column<int>(type: "int", nullable: false),
-                    District = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    District = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    ZipCode = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,8 +29,8 @@ namespace RegistrationApi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CNPJ = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CompanyName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    CNPJ = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
                     AddressId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -48,9 +48,9 @@ namespace RegistrationApi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CPF = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FullName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    CPF = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    Email = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
                     AddressId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
